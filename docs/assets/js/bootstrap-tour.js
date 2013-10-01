@@ -201,7 +201,7 @@
           $(document).off("click.tour-" + _this._options.name);
           $(document).off("keyup.tour-" + _this._options.name);
           $(window).off("resize.tour-" + _this._options.name);
-          if (notCompleted == null) {
+          if (!notCompleted) {
             _this.setState("end", "yes");
           }
           if (_this._options.onEnd != null) {
