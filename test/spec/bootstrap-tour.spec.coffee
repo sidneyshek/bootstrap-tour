@@ -119,6 +119,16 @@ describe "Bootstrap Tour", ->
     @tour.end()
     expect(tour_test).toBe 2 # tour runs onEnd when the last step hidden
 
+  it "if end is called with true, tour is not marked as ended", ->
+    tour_test = 0
+    @tour = new Tour
+      onEnd: -> tour_test += 2
+    @tour.addStep(element: $("<div></div>").appendTo("body"))
+    @tour.start()
+    @tour.end(true)
+    expect(tour_test).toBe 2 # tour runs onEnd when the last step hidden
+    expect(@tour.ended()).toBe false
+
   it "with 'onShow' option should run the callback before showing the step", ->
     tour_test = 0
     @tour = new Tour

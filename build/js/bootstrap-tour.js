@@ -194,14 +194,16 @@
         return this._callOnPromiseDone(promise, this.showStep, i);
       };
 
-      Tour.prototype.end = function() {
+      Tour.prototype.end = function(notCompleted) {
         var endHelper, hidePromise,
           _this = this;
         endHelper = function(e) {
           $(document).off("click.tour-" + _this._options.name);
           $(document).off("keyup.tour-" + _this._options.name);
           $(window).off("resize.tour-" + _this._options.name);
-          _this.setState("end", "yes");
+          if (notCompleted == null) {
+            _this.setState("end", "yes");
+          }
           if (_this._options.onEnd != null) {
             return _this._options.onEnd(_this);
           }

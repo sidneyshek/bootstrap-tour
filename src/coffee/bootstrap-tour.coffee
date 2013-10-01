@@ -166,12 +166,12 @@
       @_callOnPromiseDone(promise, @showStep, i)
 
     # End tour
-    end: ->
+    end: (notCompleted) ->
       endHelper = (e) =>
         $(document).off "click.tour-#{@_options.name}"
         $(document).off "keyup.tour-#{@_options.name}"
         $(window).off "resize.tour-#{@_options.name}"
-        @setState("end", "yes")
+        @setState("end", "yes") if !notCompleted?
 
         @_options.onEnd(@) if @_options.onEnd?
 

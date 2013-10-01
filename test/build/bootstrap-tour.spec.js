@@ -156,6 +156,22 @@
       this.tour.end();
       return expect(tour_test).toBe(2);
     });
+    it("if end is called with true, tour is not marked as ended", function() {
+      var tour_test;
+      tour_test = 0;
+      this.tour = new Tour({
+        onEnd: function() {
+          return tour_test += 2;
+        }
+      });
+      this.tour.addStep({
+        element: $("<div></div>").appendTo("body")
+      });
+      this.tour.start();
+      this.tour.end(true);
+      expect(tour_test).toBe(2);
+      return expect(this.tour.ended()).toBe(false);
+    });
     it("with 'onShow' option should run the callback before showing the step", function() {
       var tour_test;
       tour_test = 0;
